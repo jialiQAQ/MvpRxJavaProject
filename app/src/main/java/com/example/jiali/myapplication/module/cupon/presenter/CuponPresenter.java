@@ -13,7 +13,7 @@ import okhttp3.Request;
 
 public class CuponPresenter implements CuponContract.Presenter {
 
-    private CuponModelImpl curdActionListener;
+    private CuponModelImpl cuponModelImpl;
 
     private CuponContract.View view;
 
@@ -23,7 +23,7 @@ public class CuponPresenter implements CuponContract.Presenter {
 
     @Override
     public void queryStringFromServer(String request) {
-        curdActionListener.queryStringList(new okhttp3.Call() {
+        cuponModelImpl.queryStringList(new okhttp3.Call() {
             @Override
             public Request request() {
                 return null;
@@ -62,12 +62,12 @@ public class CuponPresenter implements CuponContract.Presenter {
     }
 
     @Override
-    public void onDestory() {
+    public void destory() {
 
     }
 
     @Override
     public void start() {
-        curdActionListener = CuponModelImpl.getInstance();
+        cuponModelImpl = CuponModelImpl.getInstance();
     }
 }

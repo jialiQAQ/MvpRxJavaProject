@@ -14,13 +14,11 @@ import okhttp3.Call;
 public interface CuponContract {
     interface View extends BaseView<Presenter> {
         void showStringList(List<String> list);
-
     }
 
     interface Presenter extends BasePresenter {
         void queryStringFromServer(String request);
 
-        void onDestory();
     }
 
     interface Model {

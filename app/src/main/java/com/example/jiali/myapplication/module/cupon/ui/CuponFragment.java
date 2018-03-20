@@ -8,6 +8,8 @@ import com.example.jiali.myapplication.module.cupon.presenter.CuponPresenter;
 
 import java.util.List;
 
+import rx.Subscriber;
+
 /**
  * Created by jiali on 2018/3/20.
  */
