@@ -1,4 +1,4 @@
-package com.example.jiali.myapplication.ui;
+package com.example.jiali.myapplication.module;
 
 import android.app.DialogFragment;
 import android.os.Bundle;

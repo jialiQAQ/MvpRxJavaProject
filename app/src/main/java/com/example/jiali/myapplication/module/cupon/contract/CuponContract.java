@@ -1,15 +1,17 @@
-package com.example.jiali.myapplication.ui.cupon;
+package com.example.jiali.myapplication.module.cupon.contract;
 
-import com.example.jiali.myapplication.ui.BasePresenter;
-import com.example.jiali.myapplication.ui.BaseView;
+import com.example.jiali.myapplication.module.BasePresenter;
+import com.example.jiali.myapplication.module.BaseView;
 
 import java.util.List;
+
+import okhttp3.Call;
 
 /**
  * Created by jiali on 2018/3/20.
  */
 
-public interface CuponIntract {
+public interface CuponContract {
     interface View extends BaseView<Presenter> {
         void showStringList(List<String> list);
 
@@ -19,5 +21,9 @@ public interface CuponIntract {
         void queryStringFromServer(String request);
 
         void onDestory();
+    }
+
+    interface Model {
+        void queryStringList(Call call);
     }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jiali.myapplication.ui;
+package com.example.jiali.myapplication.module;
 
 public interface BaseView<T> {
 

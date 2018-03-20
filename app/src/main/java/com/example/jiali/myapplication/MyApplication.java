@@ -3,7 +3,7 @@ package com.example.jiali.myapplication;
 import android.app.Activity;
 import android.app.Application;
 
-import com.example.jiali.myapplication.ui.BaseActivity;
+import com.example.jiali.myapplication.module.BaseActivity;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
