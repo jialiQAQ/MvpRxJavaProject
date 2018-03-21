@@ -23,6 +23,7 @@ public class CuponActivity extends BaseActivity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(cuponFragment, "");
         transaction.commit();
+        getFragmentManager().executePendingTransactions();
         //所有的事件都在Fragment层进行处理，包括跟Fragment同级别的控件，使用getActvity.findViewById获取控件
         presenter = new CuponPresenter(cuponFragment);
     }

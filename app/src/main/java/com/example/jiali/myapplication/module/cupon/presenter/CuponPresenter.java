@@ -1,73 +1,43 @@
 package com.example.jiali.myapplication.module.cupon.presenter;
 
+import com.example.jiali.myapplication.module.BaseModel;
 import com.example.jiali.myapplication.module.cupon.contract.CuponContract;
 import com.example.jiali.myapplication.module.cupon.modelimpl.CuponModelImpl;
+import com.example.jiali.myapplication.network.BaseObserver;
 
-import java.io.IOException;
+import java.util.List;
 
-import okhttp3.Request;
 
 /**
  * Created by jiali on 2018/3/20.
  */
 
-public class CuponPresenter implements CuponContract.Presenter {
+public class CuponPresenter extends CuponContract.Presenter {
 
-    private CuponModelImpl cuponModelImpl;
+    private CuponModelImpl cuponModelImpl = CuponModelImpl.getInstance();
 
     private CuponContract.View view;
 
     public CuponPresenter(CuponContract.View view) {
+        super(view);
         this.view = view;
     }
 
     @Override
-    public void queryStringFromServer(String request) {
-        cuponModelImpl.queryStringList(new okhttp3.Call() {
-            @Override
-            public Request request() {
-                return null;
-            }
-
-            @Override
-            public okhttp3.Response execute() throws IOException {
-                return null;
-            }
-
-            @Override
-            public void enqueue(okhttp3.Callback responseCallback) {
-
-            }
-
-            @Override
-            public void cancel() {
-
-            }
-
-            @Override
-            public boolean isExecuted() {
-                return false;
-            }
-
-            @Override
-            public boolean isCanceled() {
-                return false;
-            }
-
-            @Override
-            public okhttp3.Call clone() {
-                return null;
-            }
-        });
+    public void queryStringFromServer(String string) {
+        cuponModelImpl.queryStringList(baseObserver);
+        register(baseObserver);
     }
 
-    @Override
-    public void destory() {
+    private BaseObserver<List<String>> baseObserver = new BaseObserver<List<String>>() {
+        @Override
+        protected void onHandleSuccess(List<String> list) {
+        }
 
-    }
+    };
 
     @Override
-    public void start() {
-        cuponModelImpl = CuponModelImpl.getInstance();
+    protected BaseModel createModel() {
+        return CuponModelImpl.getInstance();
     }
 }

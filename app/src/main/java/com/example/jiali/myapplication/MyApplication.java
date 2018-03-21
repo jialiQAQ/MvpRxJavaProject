@@ -55,6 +55,7 @@ public class MyApplication extends Application {
             }
         }
         System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     public RefWatcher getRefWatcher() {

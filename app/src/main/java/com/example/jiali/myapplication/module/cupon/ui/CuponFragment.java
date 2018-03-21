@@ -3,12 +3,11 @@ package com.example.jiali.myapplication.module.cupon.ui;
 import android.view.View;
 
 import com.example.jiali.myapplication.module.BaseFragment;
+import com.example.jiali.myapplication.module.BasePresenter;
 import com.example.jiali.myapplication.module.cupon.contract.CuponContract;
 import com.example.jiali.myapplication.module.cupon.presenter.CuponPresenter;
 
 import java.util.List;
-
-import rx.Subscriber;
 
 /**
  * Created by jiali on 2018/3/20.
@@ -23,14 +22,13 @@ public class CuponFragment extends BaseFragment implements CuponContract.View {
     }
 
     @Override
-    public void setPresenter(CuponContract.Presenter presenter) {
-        this.presenter = (CuponPresenter) presenter;
+    public void setPresenter(BasePresenter baseCuponPresenter) {
+        this.presenter = (CuponPresenter) baseCuponPresenter;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.start();
         presenter.queryStringFromServer("..");
     }
 
@@ -48,4 +46,10 @@ public class CuponFragment extends BaseFragment implements CuponContract.View {
     protected void initData() {
 
     }
+
+    @Override
+    protected BasePresenter createPresenter() {
+        return new CuponPresenter(this);
+    }
+
 }

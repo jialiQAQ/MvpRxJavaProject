@@ -1,27 +1,30 @@
 package com.example.jiali.myapplication.module.cupon.contract;
 
+import com.example.jiali.myapplication.module.BaseModel;
 import com.example.jiali.myapplication.module.BasePresenter;
 import com.example.jiali.myapplication.module.BaseView;
+import com.example.jiali.myapplication.network.BaseObserver;
 
 import java.util.List;
-
-import okhttp3.Call;
 
 /**
  * Created by jiali on 2018/3/20.
  */
 
-public interface CuponContract {
-    interface View extends BaseView<Presenter> {
+public abstract class CuponContract {
+    public interface View extends BaseView {
         void showStringList(List<String> list);
     }
 
-    interface Presenter extends BasePresenter {
-        void queryStringFromServer(String request);
+    public static abstract class Presenter extends BasePresenter {
+        protected Presenter(BaseView baseView) {
+            super(baseView);
+        }
 
+        public abstract void queryStringFromServer(String request);
     }
 
-    interface Model {
-        void queryStringList(Call call);
+    public interface Model extends BaseModel {
+        void queryStringList(BaseObserver<List<String>> observer);
     }
 }
