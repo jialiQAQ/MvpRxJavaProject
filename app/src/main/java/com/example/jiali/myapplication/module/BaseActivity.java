@@ -28,6 +28,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutResId());
         MyApplication.getInstance().addActivity(this);
         unbinder = ButterKnife.bind(this);
+        initView();
+        initData();
     }
 
     protected abstract int getLayoutResId();

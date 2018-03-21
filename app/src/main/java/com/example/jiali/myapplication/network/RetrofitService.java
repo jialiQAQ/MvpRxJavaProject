@@ -1,11 +1,12 @@
 package com.example.jiali.myapplication.network;
 
+import com.example.jiali.myapplication.network.requestbean.LoginRequest;
 import com.example.jiali.myapplication.network.responsebean.BaseResponse;
+import com.example.jiali.myapplication.network.responsebean.UserData;
 
-import java.util.List;
-
-import io.reactivex.Observable;
-import retrofit2.http.GET;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+import rx.Observable;
 
 /**
  * Created by jiali on 2018/3/19.
@@ -13,6 +14,6 @@ import retrofit2.http.GET;
 
 public interface RetrofitService {
 
-    @GET("..")
-    Observable<BaseResponse<List<String>>> queryStringList();
+    @POST("/kspos/merchant/login")
+    Observable<BaseResponse<UserData>> login(@Body LoginRequest loginRequest);
 }

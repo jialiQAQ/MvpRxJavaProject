@@ -1,13 +1,19 @@
 package com.example.jiali.myapplication.network.conveter;
 
 
+import com.example.jiali.myapplication.util.AESUtil;
+import com.example.jiali.myapplication.util.UUIDGenerator;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Converter;
 
@@ -41,32 +47,31 @@ public class CustomRequestConverter<T> implements Converter<T, RequestBody> {
     }
 
     private RequestBody encryptData(String jsonString) {
-//        try {
-//            JSONObject jsonObject = new JSONObject(jsonString);
-//            jsonObject.put("merchantUserId", PreferenceHelper.getInt(PreferenceHelper.USER_ID) + "");
-//            jsonObject.put("mId", PreferenceHelper.getInt(PreferenceHelper.USER_ID) + "");
-//            jsonObject.put("apiver", HttpUrl.VER);
-//            jsonObject.put("token", PreferenceHelper.get(PreferenceHelper.LOGINUSER_TOKEN));
-//            String data = AESUtil.encrypt(jsonObject.toString());
-//            long systemTime = System.currentTimeMillis();
-//
-//            String nonceStr = UUIDGenerator.getInstance().getReplaceUUIDTo32();
-//            String signature = "data=" + data + "&timestamp=" + systemTime + "&nonceStr=" + nonceStr + "&product=restaurant";
-//            signature = AESUtil.encryptSHA(signature);
-//
-//            return new MultipartBody.Builder()
-//                    .setType(MultipartBody.FORM)
-//                    .addFormDataPart("data", data)
-//                    .addFormDataPart("timestamp", "" + systemTime)
-//                    .addFormDataPart("nonceStr", nonceStr)
-//                    .addFormDataPart("product", "restaurant")
-//                    .addFormDataPart("signature", signature)
-//                    .build();
-//        } catch (JSONException e) {
-//            return null;
-//        } catch (Exception e) {
-//            return null;
-//        }
-        return null;
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            jsonObject.put("merchantUserId", "");
+            jsonObject.put("mId", "");
+            jsonObject.put("apiver", 700);
+            jsonObject.put("token", "");
+            String data = AESUtil.encrypt(jsonObject.toString());
+            long systemTime = System.currentTimeMillis();
+
+            String nonceStr = UUIDGenerator.getInstance().getReplaceUUIDTo32();
+            String signature = "data=" + data + "&timestamp=" + systemTime + "&nonceStr=" + nonceStr + "&product=restaurant";
+            signature = AESUtil.encryptSHA(signature);
+
+            return new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("data", data)
+                    .addFormDataPart("timestamp", "" + systemTime)
+                    .addFormDataPart("nonceStr", nonceStr)
+                    .addFormDataPart("product", "restaurant")
+                    .addFormDataPart("signature", signature)
+                    .build();
+        } catch (JSONException e) {
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -17,6 +17,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
 
     @Override
     public void onNext(BaseResponse<T> value) {
+        Log.e("jiali", "onNext");
 //        if (value.isSuccess() || value.getCode() == 1) {
 //                T t = value.getData();
 //            if (t == null) {
@@ -34,6 +35,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<BaseResponse<T>
 
     @Override
     public void onError(Throwable e) {
+        Log.e("jiali", "onError");
     }
 
     @Override
